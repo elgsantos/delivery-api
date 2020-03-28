@@ -1,0 +1,32 @@
+{
+  "name": "delivery-route-api",
+  "version": "1.0.0",
+  "description": "A simple delivery API with address verification and integration with the maps API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elgsantos/delivery-route-api.git"
+  },
+  "keywords": [
+    "api",
+    "delivery",
+    "route",
+    "nodejs"
+  ],
+  "author": {
+    "name": "Eduardo Santos",
+    "url": "http://github.com/elgsantos"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elgsantos/delivery-route-api/issues"
+  },
+  "homepage": "https://github.com/elgsantos/delivery-route-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
