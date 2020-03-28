@@ -7,10 +7,22 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.js"
   },
+  "lint-staged": {
+    "*.js": [
+      "semistandard --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.9",
     "semistandard": "^14.2.0"
   },
   "repository": {
