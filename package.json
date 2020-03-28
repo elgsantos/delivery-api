@@ -7,6 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.js"
   },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "semistandard": "^14.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/elgsantos/delivery-route-api.git"
@@ -25,8 +31,5 @@
   "bugs": {
     "url": "https://github.com/elgsantos/delivery-route-api/issues"
   },
-  "homepage": "https://github.com/elgsantos/delivery-route-api#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/elgsantos/delivery-route-api#readme"
 }
