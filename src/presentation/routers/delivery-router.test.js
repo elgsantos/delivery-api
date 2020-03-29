@@ -1,19 +1,5 @@
-class DeliveryRouter {
-  route (httpRequest) {
-    if (!httpRequest || !httpRequest.body) {
-      return {
-        statusCode: 500
-      };
-    }
-    const { customer, deliveryDate, startAddress, destinationAddress } = httpRequest.body;
-    if (!customer || !deliveryDate || !startAddress || !destinationAddress) {
-      return {
-        statusCode: 400,
-        message: true
-      };
-    }
-  }
-}
+const DeliveryRouter = require('./delivery-router');
+const MissingParamError = require('../helpers/missing-param-error');
 
 describe('Delivery Router', () => {
   test('Should return 400 if no customer is provided', () => {
@@ -27,6 +13,8 @@ describe('Delivery Router', () => {
     };
     const httpResponse = sut.route(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(new MissingParamError('Missing params.'));
+    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['customer']));
   });
 
   test('Should return 400 if no startAddress is provided', () => {
@@ -40,6 +28,8 @@ describe('Delivery Router', () => {
     };
     const httpResponse = sut.route(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(new MissingParamError('Missing params.'));
+    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['startAddress']));
   });
 
   test('Should return 400 if no destinationAddress is provided', () => {
@@ -53,6 +43,8 @@ describe('Delivery Router', () => {
     };
     const httpResponse = sut.route(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(new MissingParamError('Missing params.'));
+    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['destinationAddress']));
   });
 
   test('Should return 400 if no deliveryDate is provided', () => {
@@ -66,6 +58,8 @@ describe('Delivery Router', () => {
     };
     const httpResponse = sut.route(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(new MissingParamError('Missing params.'));
+    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['deliveryDate']));
   });
 
   test('Should return 500 if no httpRequest is provided', () => {
