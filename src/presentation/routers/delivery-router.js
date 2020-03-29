@@ -1,6 +1,10 @@
 const HttpResponse = require('../helpers/http-response');
 
 module.exports = class DeliveryRouter {
+  constructor (deliveryUseCase) {
+    this.deliveryUseCase = deliveryUseCase;
+  }
+
   route (httpRequest) {
     if (!httpRequest || !httpRequest.body) {
       return HttpResponse.serverError();
@@ -19,8 +23,10 @@ module.exports = class DeliveryRouter {
     if (!destinationAddress) {
       errorParams.push('destinationAddress');
     }
-    if (errorParams) {
+    if (errorParams.length > 0) {
       return HttpResponse.badRequest(errorParams);
     }
+    this.deliveryUseCase.create(customer, deliveryDate, startAddress, destinationAddress);
+    return HttpResponse.unprocessableRequest();
   }
 };
