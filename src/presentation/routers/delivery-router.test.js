@@ -1,5 +1,10 @@
 class DeliveryRouter {
   route (httpRequest) {
+    if (!httpRequest || !httpRequest.body) {
+      return {
+        statusCode: 500
+      };
+    }
     const { customer, deliveryDate, startAddress, destinationAddress } = httpRequest.body;
     if (!customer || !deliveryDate || !startAddress || !destinationAddress) {
       return {
@@ -61,5 +66,18 @@ describe('Delivery Router', () => {
     };
     const httpResponse = sut.route(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
+  });
+
+  test('Should return 500 if no httpRequest is provided', () => {
+    const sut = new DeliveryRouter();
+    const httpResponse = sut.route();
+    expect(httpResponse.statusCode).toBe(500);
+  });
+
+  test('Should return 500 if no httpRequest has no body', () => {
+    const sut = new DeliveryRouter();
+    const httpRequest = {};
+    const httpResponse = sut.route(httpRequest);
+    expect(httpResponse.statusCode).toBe(500);
   });
 });
