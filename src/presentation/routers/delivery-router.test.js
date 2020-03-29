@@ -1,9 +1,13 @@
 const DeliveryRouter = require('./delivery-router');
 const MissingParamError = require('../helpers/missing-param-error');
 
+const makeSut = () => {
+  return new DeliveryRouter();
+};
+
 describe('Delivery Router', () => {
   test('Should return 400 if no customer is provided', () => {
-    const sut = new DeliveryRouter();
+    const sut = makeSut();
     const httpRequest = {
       body: {
         deliveryDate: '2010-01-01',
@@ -18,7 +22,7 @@ describe('Delivery Router', () => {
   });
 
   test('Should return 400 if no startAddress is provided', () => {
-    const sut = new DeliveryRouter();
+    const sut = makeSut();
     const httpRequest = {
       body: {
         customer: 'Someone',
@@ -33,7 +37,7 @@ describe('Delivery Router', () => {
   });
 
   test('Should return 400 if no destinationAddress is provided', () => {
-    const sut = new DeliveryRouter();
+    const sut = makeSut();
     const httpRequest = {
       body: {
         customer: 'Someone',
@@ -48,7 +52,7 @@ describe('Delivery Router', () => {
   });
 
   test('Should return 400 if no deliveryDate is provided', () => {
-    const sut = new DeliveryRouter();
+    const sut = makeSut();
     const httpRequest = {
       body: {
         customer: 'Someone',
@@ -63,13 +67,13 @@ describe('Delivery Router', () => {
   });
 
   test('Should return 500 if no httpRequest is provided', () => {
-    const sut = new DeliveryRouter();
+    const sut = makeSut();
     const httpResponse = sut.route();
     expect(httpResponse.statusCode).toBe(500);
   });
 
   test('Should return 500 if no httpRequest has no body', () => {
-    const sut = new DeliveryRouter();
+    const sut = makeSut();
     const httpRequest = {};
     const httpResponse = sut.route(httpRequest);
     expect(httpResponse.statusCode).toBe(500);

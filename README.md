@@ -5,32 +5,13 @@
 A delivery API with address verification and integration with the maps API.
 
 ## Table of Contents
-- [Delivery-Route-API](#delivery-route-api)
-  - [Getting Started](#getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Installation](#installation)
-    * [Usage](#usage)
-  - [Built With](#built-with)
-  - [Tools used](#tools-used)
-  - [License](#license)
-
-## Built With
-
-- [Node](https://nodejs.org/en/)
-- [Express](https://expressjs.com/pt-br/)
-- [jest](https://github.com/facebook/jest)
-- [Nodemon](https://nodemon.io/)
-- [dotenv](https://www.npmjs.com/package/dotenv)
-- [semistandard](https://github.com/standard/semistandard)
-- [lint-staged](https://github.com/okonet/lint-staged)
-- [husky](https://github.com/typicode/husky)
-
-## Tools used
-
-The following tools were used in the development of the API:
-
-- Code editor: [vscode](https://marketplace.visualstudio.com/vscode)
-- Semistandard Extension: [vscode-semistandard](https://marketplace.visualstudio.com/items?itemName=flet.vscode-semistandard)
+- [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+  * [Usage](#usage)
+- [Built With](#built-with)
+- [Tools used](#tools-used)
+- [License](#license)
 
 ## Getting Started
 
@@ -78,6 +59,24 @@ If you are in development environment, you can use the development server with a
 ```sh
 npm run dev
 ```
+
+## Built With
+
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/pt-br/)
+- [jest](https://github.com/facebook/jest)
+- [Nodemon](https://nodemon.io/)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [semistandard](https://github.com/standard/semistandard)
+- [lint-staged](https://github.com/okonet/lint-staged)
+- [husky](https://github.com/typicode/husky)
+
+## Tools used
+
+The following tools were used in the development of the API:
+
+- Code editor: [vscode](https://marketplace.visualstudio.com/vscode)
+- Semistandard Extension: [vscode-semistandard](https://marketplace.visualstudio.com/items?itemName=flet.vscode-semistandard)
 
 ## License
 
