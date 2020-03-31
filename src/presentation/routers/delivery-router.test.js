@@ -1,7 +1,6 @@
 const DeliveryRouter = require('./delivery-router');
 const MissingParamError = require('../helpers/missing-param-error');
 const ServerError = require('../helpers/server-error');
-const InvalidParamError = require('../helpers/invalid-param-error');
 
 const makeDeliveryUseCaseWithError = () => {
   class DeliveryUseCaseSpy {
@@ -21,7 +20,8 @@ const makeDeliveryUseCase = () => {
       this.destinationAddress = destinationAddress;
     }
   }
-  return new DeliveryUseCaseSpy();
+  const deliveryUseCaseSpy = new DeliveryUseCaseSpy();
+  return deliveryUseCaseSpy;
 };
 
 const makeSut = () => {
@@ -173,7 +173,7 @@ describe('Delivery Router', () => {
     expect(deliveryUseCase.destinationAddress).toBe(httpRequest.body.destinationAddress);
   });
 
-  test('Should return 422 if startAddress or destinationAddress is not found', async () => {
+  test('Should return 200 when delivery is created', async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -181,10 +181,11 @@ describe('Delivery Router', () => {
         deliveryDate: '2010-01-01',
         startAddress: 'Rua Quinze de Novembro, 8 - Centro, Niterói - RJ, 24020-125',
         destinationAddress: 'Rua Lopes Trovão, 10 - Icaraí, Niterói -RJ'
+        // startLocation = { lat: -22.8938698, lng: -43.1235658 };
+        // destinationLocation = { lat: -22.906872, lng: -43.114219 };
       }
     };
     const httpResponse = await sut.route(httpRequest);
-    expect(httpResponse.statusCode).toBe(422);
-    expect(httpResponse.body).toEqual(new InvalidParamError());
+    expect(httpResponse.statusCode).toBe(200);
   });
 });

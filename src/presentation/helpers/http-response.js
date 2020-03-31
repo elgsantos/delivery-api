@@ -1,12 +1,10 @@
-const MissingParamError = require('./missing-param-error');
-const InvalidParamError = require('./invalid-param-error');
 const ServerError = require('./server-error');
 
 module.exports = class HttpResponse {
-  static badRequest (errorParams) {
+  static badRequest (error) {
     return {
       statusCode: 400,
-      body: new MissingParamError(errorParams)
+      body: error
     };
   }
 
@@ -14,13 +12,6 @@ module.exports = class HttpResponse {
     return {
       statusCode: 500,
       body: new ServerError()
-    };
-  }
-
-  static unprocessableRequest (errorParams) {
-    return {
-      statusCode: 422,
-      body: new InvalidParamError(errorParams)
     };
   }
 

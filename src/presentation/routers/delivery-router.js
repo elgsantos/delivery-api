@@ -1,8 +1,10 @@
 const HttpResponse = require('../helpers/http-response');
+const MissingParamError = require('../helpers/missing-param-error');
 
 module.exports = class DeliveryRouter {
-  constructor (deliveryUseCase) {
+  constructor (deliveryUseCase, mapService) {
     this.deliveryUseCase = deliveryUseCase;
+    this.mapService = mapService;
   }
 
   async route (httpRequest) {
@@ -22,10 +24,10 @@ module.exports = class DeliveryRouter {
         errorParams.push('destinationAddress');
       }
       if (errorParams.length > 0) {
-        return HttpResponse.badRequest(errorParams);
+        return HttpResponse.badRequest(new MissingParamError(errorParams));
       }
       await this.deliveryUseCase.create(customer, deliveryDate, startAddress, destinationAddress);
-      return HttpResponse.unprocessableRequest();
+      return HttpResponse.ok();
     } catch (error) {
       // if undefined objects: httpRequest, httpRequest.body, deliveryUseCase,deliveryUseCase.create...
       // console.error(error);
