@@ -1,6 +1,5 @@
 const DeliveryRouter = require('./delivery-router');
-const MissingParamError = require('../helpers/missing-param-error');
-const ServerError = require('../helpers/server-error');
+const { MissingParamError, ServerError } = require('../errors');
 
 const makeDeliveryUseCaseWithError = () => {
   class DeliveryUseCaseSpy {
