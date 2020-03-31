@@ -1,11 +1,11 @@
 {
   "name": "delivery-route-api",
   "version": "1.0.0",
-  "description": "A delivery API with address verification and integration with the geolocation maps API.",
+  "description": "A delivery API to store and provide delivery data.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "test:staged": "jest --passWithNoTests",
+    "test": "jest --watch --silent --color",
+    "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace",
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
