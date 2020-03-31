@@ -2,7 +2,7 @@
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/standard/semistandard)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
-A delivery API with address verification and integration with the maps API.
+A delivery API to store and provide delivery data.
 
 ## Table of Contents
 - [Getting Started](#getting-started)

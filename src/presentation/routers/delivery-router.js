@@ -9,7 +9,10 @@ module.exports = class DeliveryRouter {
 
   async route (httpRequest) {
     try {
-      const { customer, deliveryDate, startAddress, destinationAddress } = httpRequest.body;
+      const {
+        customer, deliveryDate, startAddress, destinationAddress,
+        startLocation, destinationLocation
+      } = httpRequest.body;
       const errorParams = [];
       if (!customer) {
         errorParams.push('customer');
@@ -22,6 +25,12 @@ module.exports = class DeliveryRouter {
       }
       if (!destinationAddress) {
         errorParams.push('destinationAddress');
+      }
+      if (!startLocation || !startLocation.lat || !startLocation.lng) {
+        errorParams.push('startLocation');
+      }
+      if (!destinationLocation || !destinationLocation.lat || !destinationLocation.lng) {
+        errorParams.push('destinationLocation');
       }
       if (errorParams.length > 0) {
         return HttpResponse.badRequest(new MissingParamError(errorParams));
