@@ -12,6 +12,11 @@ class LoadDeliveriesRepository {
     const deliveries = await this.deliveryModel.find().toArray();
     return deliveries;
   }
+
+  async loadById (id) {
+    const deliveries = await this.deliveryModel.findOne({ _id: id });
+    return deliveries;
+  }
 }
 
 const makeSut = () => {
@@ -59,8 +64,21 @@ describe('LoadDeliveries Repository', () => {
     await deliveryModel.insertOne({ _id: '1', ...mockDelivery });
     await deliveryModel.insertOne({ _id: '2', ...mockDelivery });
     deliveries = await sut.load();
-    console.log(deliveries);
     expect(Array.isArray(deliveries)).toBe(true);
     expect(deliveries.length).toBe(2);
+    expect(deliveries[0]).toEqual({ _id: '1', ...mockDelivery });
+  });
+
+  test('Should return null if delivery is not found', async () => {
+    const { sut } = makeSut();
+    const deliveries = await sut.loadById('1');
+    expect(deliveries).toBe(null);
+  });
+
+  test('Should return the specified delivery if found', async () => {
+    const { sut, deliveryModel } = makeSut();
+    await deliveryModel.insertOne({ _id: '1', ...mockDelivery });
+    const delivery = await sut.loadById('1');
+    expect(delivery).toEqual({ _id: '1', ...mockDelivery });
   });
 });
