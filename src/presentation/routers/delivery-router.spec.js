@@ -38,9 +38,7 @@ const makeValidHttpRequest = () => {
       customer: 'Someone',
       deliveryDate: '2010-01-01',
       startAddress: 'Rua Quinze de Novembro, 8 - Centro, Niterói - RJ, 24020-125',
-      destinationAddress: 'Rua Lopes Trovão, 10 - Icaraí, Niterói -RJ',
-      startLocation: { lat: -22.8938698, lng: -43.1235658 },
-      destinationLocation: { lat: -22.906872, lng: -43.114219 }
+      destinationAddress: 'Rua Lopes Trovão, 10 - Icaraí, Niterói -RJ'
     }
   };
 };
@@ -92,78 +90,6 @@ describe('Delivery Router', () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError());
     expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['deliveryDate']));
-  });
-
-  test('Should return 400 if no startLocation is provided', async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeValidHttpRequest();
-
-    delete httpRequest.body.startLocation;
-    const httpResponse = await sut.route(httpRequest);
-
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError());
-    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['startLocation']));
-  });
-
-  test('Should return 400 if no startLocation.lat is provided', async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeValidHttpRequest();
-
-    delete httpRequest.body.startLocation.lat;
-    const httpResponse = await sut.route(httpRequest);
-
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError());
-    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['startLocation']));
-  });
-
-  test('Should return 400 if no startLocation.lng is provided', async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeValidHttpRequest();
-
-    delete httpRequest.body.startLocation.lng;
-    const httpResponse = await sut.route(httpRequest);
-
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError());
-    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['startLocation']));
-  });
-
-  test('Should return 400 if no destinationLocation is provided', async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeValidHttpRequest();
-
-    delete httpRequest.body.destinationLocation;
-    const httpResponse = await sut.route(httpRequest);
-
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError());
-    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['destinationLocation']));
-  });
-
-  test('Should return 400 if no destinationLocation.lat is provided', async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeValidHttpRequest();
-
-    delete httpRequest.body.destinationLocation.lat;
-    const httpResponse = await sut.route(httpRequest);
-
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError());
-    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['destinationLocation']));
-  });
-
-  test('Should return 400 if no destinationLocation.lng is provided', async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeValidHttpRequest();
-
-    delete httpRequest.body.destinationLocation.lng;
-    const httpResponse = await sut.route(httpRequest);
-
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError());
-    expect(httpResponse.body.fields).toEqual(expect.arrayContaining(['destinationLocation']));
   });
 
   test('Should return 500 if no httpRequest is provided', async () => {

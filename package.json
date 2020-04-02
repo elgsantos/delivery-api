@@ -4,7 +4,7 @@
   "description": "A delivery API to store and provide delivery data.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --silent --colors --passWithNoTests",
+    "test": "jest --colors --passWithNoTests",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:staged": "npm test -- --findRelatedTests --noStackTrace",
     "test:ci": "npm test -- --coverage --noStackTrace",
@@ -12,9 +12,11 @@
     "dev": "nodemon ./src/index.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.5.5"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.1.5",
     "husky": "^4.2.3",
     "jest": "^25.2.3",
     "jest-cli": "^25.2.3",
@@ -23,7 +25,9 @@
     "semistandard": "^14.2.0"
   },
   "semistandard": {
-    "env": ["jest"]
+    "env": [
+      "jest"
+    ]
   },
   "repository": {
     "type": "git",

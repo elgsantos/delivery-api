@@ -1,4 +1,4 @@
-# Delivery-Route-API
+# Delivery-API
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/standard/semistandard)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
@@ -65,6 +65,7 @@ npm run dev
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/)
 - [jest](https://github.com/facebook/jest)
+- [jest-mongodb](https://github.com/shelfio/jest-mongodb)
 - [Nodemon](https://nodemon.io/)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [semistandard](https://github.com/standard/semistandard)
