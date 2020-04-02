@@ -1,23 +1,8 @@
 const { MongoClient } = require('mongodb');
 const { StringToDate } = require('../../presentation/helpers/date-converter');
+const LoadDeliveriesRepository = require('./load-deliveries-repository');
 
 let connection, db;
-
-class LoadDeliveriesRepository {
-  constructor (deliveryModel) {
-    this.deliveryModel = deliveryModel;
-  }
-
-  async load () {
-    const deliveries = await this.deliveryModel.find().toArray();
-    return deliveries;
-  }
-
-  async loadById (id) {
-    const deliveries = await this.deliveryModel.findOne({ _id: id });
-    return deliveries;
-  }
-}
 
 const makeSut = () => {
   const deliveryModel = db.collection('deliveries');
