@@ -9,9 +9,11 @@ const makeSut = () => {
       this.deliveryDate = delivery.deliveryDate;
       this.startAddress = delivery.startAddress;
       this.destinationAddress = delivery.destinationAddress;
+      return this.result;
     }
   }
   const deliveryRepositorySpy = new DeliveryRepositorySpy();
+  deliveryRepositorySpy.result = {};
   const sut = new DeliveryUseCase(deliveryRepositorySpy);
   return {
     sut,
@@ -48,7 +50,7 @@ describe('Delivery UseCase', () => {
     expect(promise).rejects.toThrow(new MissingParamError(['destinationAddress']));
   });
 
-  test('Should if no delivery is provided on create', async () => {
+  test('Should throw if no delivery is provided on create', async () => {
     const { sut } = makeSut();
     const promise = sut.create();
     expect(promise).rejects.toThrow(new MissingParamError(['delivery']));
@@ -90,5 +92,25 @@ describe('Delivery UseCase', () => {
     const sut = new DeliveryUseCase({});
     const promise = sut.load();
     expect(promise).rejects.toThrow();
+  });
+
+  test('Should return delivery if DeliveryRepository creates', async () => {
+    const { sut, deliveryRepositorySpy } = makeSut();
+    deliveryRepositorySpy.result = {
+      customer: 'any_customer',
+      deliveryDate: StringToDate('2020-12-20'),
+      startAddress: 'any_address',
+      destinationAddress: 'any_dest_address'
+    };
+    const result = await sut.create({
+      customer: 'any_customer',
+      deliveryDate: '2020-12-20',
+      startAddress: 'any_address',
+      destinationAddress: 'any_dest_address'
+    });
+    expect(result.customer).toBe('any_customer');
+    expect(result.deliveryDate).toEqual(StringToDate('2020-12-20'));
+    expect(result.startAddress).toBe('any_address');
+    expect(result.destinationAddress).toBe('any_dest_address');
   });
 });
