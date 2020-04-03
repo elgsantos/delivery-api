@@ -13,6 +13,7 @@ module.exports = {
 
   async disconnect () {
     await this.connection.close();
+    this.db = null;
   },
 
   async getDb () {
