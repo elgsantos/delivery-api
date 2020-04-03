@@ -1,13 +1,13 @@
 const MongoHelper = require('../helpers/mongo-helper');
 const { StringToDate } = require('../../presentation/helpers/date-converter');
-const LoadDeliveriesRepository = require('./load-deliveries-repository');
+const DeliveriesRepository = require('./deliveries-repository');
 const { MissingParamError } = require('../../utils/errors');
 
 let db;
 
 const makeSut = () => {
   const deliveryModel = db.collection('deliveries');
-  const sut = new LoadDeliveriesRepository(deliveryModel);
+  const sut = new DeliveriesRepository(deliveryModel);
   return {
     deliveryModel,
     sut
@@ -21,7 +21,7 @@ const mockDelivery = {
   destinationAddress: 'Rua Lopes Trovão, 10 - Icaraí, Niterói -RJ'
 };
 
-describe('LoadDeliveries Repository', () => {
+describe('Deliveries Repository', () => {
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL);
     db = await MongoHelper.getDb();
@@ -66,13 +66,13 @@ describe('LoadDeliveries Repository', () => {
   });
 
   test('Should throw if no deliveryModel is provided on load()', async () => {
-    const sut = new LoadDeliveriesRepository();
+    const sut = new DeliveriesRepository();
     const promise = sut.load();
     expect(promise).rejects.toThrow();
   });
 
   test('Should throw if no deliveryModel is provided on loadById()', async () => {
-    const sut = new LoadDeliveriesRepository();
+    const sut = new DeliveriesRepository();
     const promise = sut.loadById('1');
     expect(promise).rejects.toThrow();
   });
@@ -81,5 +81,36 @@ describe('LoadDeliveries Repository', () => {
     const { sut } = makeSut();
     const promise = sut.loadById();
     expect(promise).rejects.toThrow(new MissingParamError(['id']));
+  });
+
+  test('Should create a delivery on create()', async () => {
+    const { sut } = makeSut();
+    const result = await sut.create(mockDelivery);
+    expect(result.customer).toBe(mockDelivery.customer);
+    expect(result.deliveryDate).toBe(mockDelivery.deliveryDate);
+    expect(result.startAddress).toBe(mockDelivery.startAddress);
+    expect(result.destinationAddress).toBe(mockDelivery.destinationAddress);
+  });
+
+  test('Should throw if no deliveryModel is provided on create()', async () => {
+    const sut = new DeliveriesRepository();
+    const promise = sut.create(mockDelivery);
+    expect(promise).rejects.toThrow();
+  });
+
+  test('Should throw if no params are provided on create()', async () => {
+    const sut = new DeliveriesRepository();
+    expect(sut.create()).rejects.toThrow(new MissingParamError(['delivery']));
+    expect(sut.create({}))
+      .rejects.toThrow(new MissingParamError(['customer']));
+    expect(sut.create({ customer: mockDelivery.customer }))
+      .rejects.toThrow(new MissingParamError(['deliveryDate']));
+    expect(sut.create({ customer: mockDelivery.customer, deliveryDate: mockDelivery.deliveryDate }))
+      .rejects.toThrow(new MissingParamError(['startAddress']));
+    expect(sut.create({
+      customer: mockDelivery.customer,
+      deliveryDate: mockDelivery.deliveryDate,
+      startAddress: mockDelivery.startAddress
+    })).rejects.toThrow(new MissingParamError(['customer']));
   });
 });
