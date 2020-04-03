@@ -7,9 +7,6 @@ module.exports = class DeliveryUseCase {
   }
 
   async create (delivery) {
-    if (!delivery) {
-      throw new MissingParamError(['delivery']);
-    }
     if (!delivery.customer) {
       throw new MissingParamError(['customer']);
     }

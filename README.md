@@ -66,6 +66,7 @@ npm run dev
 - [Express](https://expressjs.com/pt-br/)
 - [jest](https://github.com/facebook/jest)
 - [jest-mongodb](https://github.com/shelfio/jest-mongodb)
+- [SuperTest](https://github.com/visionmedia/supertest)
 - [Nodemon](https://nodemon.io/)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [semistandard](https://github.com/standard/semistandard)

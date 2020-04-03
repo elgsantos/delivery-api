@@ -113,4 +113,11 @@ describe('Deliveries Repository', () => {
       startAddress: mockDelivery.startAddress
     })).rejects.toThrow(new MissingParamError(['customer']));
   });
+
+  test('Should throw if delivery not inserted on create()', async () => {
+    const { sut } = makeSut();
+    await sut.create({ _id: '1', ...mockDelivery });
+    const promise = sut.create({ _id: '1', ...mockDelivery });
+    expect(promise).rejects.toThrow();
+  });
 });

@@ -2,17 +2,19 @@
   "name": "delivery-route-api",
   "version": "1.0.0",
   "description": "A delivery API to store and provide delivery data.",
-  "main": "index.js",
+  "main": "src/main/index.js",
   "scripts": {
-    "test": "jest --colors --passWithNoTests",
+    "test": "jest --colors --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests --noStackTrace --silent",
     "test:ci": "npm test -- --coverage --noStackTrace --silent",
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
+    "start": "node ./src/main/index.js",
+    "dev": "nodemon ./src/main/index.js"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "fast-glob": "^3.2.2",
     "mongodb": "^3.5.5"
   },
   "devDependencies": {
@@ -22,7 +24,8 @@
     "jest-cli": "^25.2.3",
     "lint-staged": "^10.0.9",
     "nodemon": "^2.0.2",
-    "semistandard": "^14.2.0"
+    "semistandard": "^14.2.0",
+    "supertest": "^4.0.2"
   },
   "semistandard": {
     "env": [
