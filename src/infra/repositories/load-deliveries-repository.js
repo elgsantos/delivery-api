@@ -1,3 +1,4 @@
+const { MissingParamError } = require('../../utils/errors');
 module.exports = class LoadDeliveriesRepository {
   constructor (deliveryModel) {
     this.deliveryModel = deliveryModel;
@@ -9,6 +10,9 @@ module.exports = class LoadDeliveriesRepository {
   }
 
   async loadById (id) {
+    if (!id) {
+      throw new MissingParamError(['id']);
+    }
     const deliveries = await this.deliveryModel.findOne({ _id: id });
     return deliveries;
   }

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --colors --passWithNoTests",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
-    "test:staged": "npm test -- --findRelatedTests --noStackTrace",
-    "test:ci": "npm test -- --coverage --noStackTrace",
+    "test:staged": "npm test -- --findRelatedTests --noStackTrace --silent",
+    "test:ci": "npm test -- --coverage --noStackTrace --silent",
     "start": "node ./src/index.js",
     "dev": "nodemon ./src/index.js"
   },
