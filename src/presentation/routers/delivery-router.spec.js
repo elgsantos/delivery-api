@@ -12,11 +12,11 @@ const makeDeliveryUseCaseWithError = () => {
 
 const makeDeliveryUseCase = () => {
   class DeliveryUseCaseSpy {
-    async create (customer, deliveryDate, startAddress, destinationAddress) {
-      this.customer = customer;
-      this.deliveryDate = deliveryDate;
-      this.startAddress = startAddress;
-      this.destinationAddress = destinationAddress;
+    async create (delivery) {
+      this.customer = delivery.customer;
+      this.deliveryDate = delivery.deliveryDate;
+      this.startAddress = delivery.startAddress;
+      this.destinationAddress = delivery.destinationAddress;
     }
   }
   const deliveryUseCaseSpy = new DeliveryUseCaseSpy();

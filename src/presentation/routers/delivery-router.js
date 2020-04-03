@@ -28,7 +28,7 @@ module.exports = class DeliveryRouter {
       if (errorParams.length > 0) {
         return HttpResponse.badRequest(new MissingParamError(errorParams));
       }
-      await this.deliveryUseCase.create(customer, deliveryDate, startAddress, destinationAddress);
+      await this.deliveryUseCase.create({ customer, deliveryDate, startAddress, destinationAddress });
       return HttpResponse.ok();
     } catch (error) {
       // if undefined objects: httpRequest, httpRequest.body, deliveryUseCase,deliveryUseCase.create...
