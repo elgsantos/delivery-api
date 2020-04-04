@@ -2,9 +2,8 @@ const HttpResponse = require('../helpers/http-response');
 const { MissingParamError } = require('../../utils/errors');
 
 module.exports = class DeliveryRouter {
-  constructor (deliveryUseCase, mapService) {
+  constructor (deliveryUseCase) {
     this.deliveryUseCase = deliveryUseCase;
-    this.mapService = mapService;
   }
 
   async route (httpRequest) {

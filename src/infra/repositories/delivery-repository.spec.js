@@ -6,12 +6,7 @@ const { MissingParamError } = require('../../utils/errors');
 let db;
 
 const makeSut = () => {
-  const deliveryModel = db.collection('deliveries');
-  const sut = new DeliveryRepository(deliveryModel);
-  return {
-    deliveryModel,
-    sut
-  };
+  return new DeliveryRepository();
 };
 
 const mockDelivery = {
@@ -36,16 +31,16 @@ describe('Deliveries Repository', () => {
   });
 
   test('Should return empty if no delivery is found on load()', async () => {
-    const { sut } = makeSut();
+    const sut = makeSut();
     const deliveries = await sut.load();
     expect(deliveries).toEqual([]);
   });
 
   test('Should return a list of deliveries if any is found on load()', async () => {
-    const { sut, deliveryModel } = makeSut();
+    const sut = makeSut();
     let deliveries = [];
-    await deliveryModel.insertOne({ _id: '1', ...mockDelivery });
-    await deliveryModel.insertOne({ _id: '2', ...mockDelivery });
+    await db.collection('deliveries').insertOne({ _id: '1', ...mockDelivery });
+    await db.collection('deliveries').insertOne({ _id: '2', ...mockDelivery });
     deliveries = await sut.load();
     expect(Array.isArray(deliveries)).toBe(true);
     expect(deliveries.length).toBe(2);
@@ -53,49 +48,31 @@ describe('Deliveries Repository', () => {
   });
 
   test('Should return null if delivery is not found on loadById()', async () => {
-    const { sut } = makeSut();
+    const sut = makeSut();
     const deliveries = await sut.loadById('1');
     expect(deliveries).toBe(null);
   });
 
   test('Should return the specified delivery if found on loadById()', async () => {
-    const { sut, deliveryModel } = makeSut();
-    await deliveryModel.insertOne({ _id: '1', ...mockDelivery });
+    const sut = makeSut();
+    await db.collection('deliveries').insertOne({ _id: '1', ...mockDelivery });
     const delivery = await sut.loadById('1');
     expect(delivery).toEqual({ _id: '1', ...mockDelivery });
   });
 
-  test('Should throw if no deliveryModel is provided on load()', async () => {
-    const sut = new DeliveryRepository();
-    const promise = sut.load();
-    expect(promise).rejects.toThrow();
-  });
-
-  test('Should throw if no deliveryModel is provided on loadById()', async () => {
-    const sut = new DeliveryRepository();
-    const promise = sut.loadById('1');
-    expect(promise).rejects.toThrow();
-  });
-
   test('Should throw if no id is provided on loadById()', async () => {
-    const { sut } = makeSut();
+    const sut = makeSut();
     const promise = sut.loadById();
     expect(promise).rejects.toThrow(new MissingParamError(['id']));
   });
 
   test('Should create a delivery on create()', async () => {
-    const { sut } = makeSut();
+    const sut = makeSut();
     const result = await sut.create(mockDelivery);
     expect(result.customer).toBe(mockDelivery.customer);
     expect(result.deliveryDate).toBe(mockDelivery.deliveryDate);
     expect(result.startAddress).toBe(mockDelivery.startAddress);
     expect(result.destinationAddress).toBe(mockDelivery.destinationAddress);
-  });
-
-  test('Should throw if no deliveryModel is provided on create()', async () => {
-    const sut = new DeliveryRepository();
-    const promise = sut.create(mockDelivery);
-    expect(promise).rejects.toThrow();
   });
 
   test('Should throw if no params are provided on create()', async () => {
@@ -115,7 +92,7 @@ describe('Deliveries Repository', () => {
   });
 
   test('Should throw if delivery not inserted on create()', async () => {
-    const { sut } = makeSut();
+    const sut = makeSut();
     await sut.create({ _id: '1', ...mockDelivery });
     const promise = sut.create({ _id: '1', ...mockDelivery });
     expect(promise).rejects.toThrow();
