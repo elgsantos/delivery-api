@@ -39,4 +39,10 @@ describe('Delivery Routes', () => {
       })
       .expect(400);
   });
+
+  test('Should return 200 when geet router responds', async () => {
+    await request(app)
+      .get('/api/deliveries')
+      .expect(200);
+  });
 });
