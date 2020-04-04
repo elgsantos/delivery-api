@@ -1,7 +1,6 @@
-// const GetDeliveriesRouter = require('./delivery-router');
-const { ServerError } = require('../../utils/errors');
-const { StringToDate } = require('../helpers/date-converter');
-const GetDeliveriesRouter = require('../routers/get-deliveries-router');
+const { ServerError } = require('../../../utils/errors');
+const { StringToDate } = require('../../helpers/date-converter');
+const GetDeliveriesRouter = require('./get-deliveries-router');
 
 const makeDeliveryUseCaseWithError = () => {
   class DeliveryUseCaseSpy {

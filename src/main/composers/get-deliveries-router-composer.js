@@ -1,4 +1,4 @@
-const GetDeliveriesRouter = require('../../presentation/routers/get-deliveries-router');
+const GetDeliveriesRouter = require('../../presentation/routers/deliveries/get-deliveries-router');
 const DeliveryUseCase = require('../../domain/usecases/delivery-usecase');
 const DeliveryRepository = require('../../infra/repositories/delivery-repository');
 

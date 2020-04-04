@@ -1,5 +1,5 @@
-const HttpResponse = require('../helpers/http-response');
-const { MissingParamError } = require('../../utils/errors');
+const HttpResponse = require('../../helpers/http-response');
+const { MissingParamError } = require('../../../utils/errors');
 
 module.exports = class DeliveryRouter {
   constructor (deliveryUseCase) {
