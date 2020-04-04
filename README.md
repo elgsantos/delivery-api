@@ -12,6 +12,7 @@
 - [Built With](#built-with)
 - [Tools used](#tools-used)
 - [Contributing](#contributing)
+- [Author](#author)
 - [License](#license)
 
 ## Getting Started
@@ -54,19 +55,13 @@ You can start the server with:
 $ npm start
 ```
 
-If you are in development environment, you can use the development server with autoreloading:
-
-```sh
-$ npm run dev
-```
-
-To run unit tests use: 
+To run and watch unit tests, use: 
 
 ```sh
 $ npm run test:unit
 ```
 
-To run integration tests use: 
+To run and watch integration tests, use: 
 
 ```sh
 $ npm run test:integration
@@ -80,7 +75,6 @@ $ npm run test:integration
 - [jest](https://github.com/facebook/jest)
 - [jest-mongodb](https://github.com/shelfio/jest-mongodb)
 - [SuperTest](https://github.com/visionmedia/supertest)
-- [Nodemon](https://nodemon.io/)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [semistandard](https://github.com/standard/semistandard)
 - [lint-staged](https://github.com/okonet/lint-staged)
@@ -132,49 +126,16 @@ Cleaning up... [completed]
 ```
 $ git push origin master
 
-------------------------------|---------|----------|---------|---------|-------------------
-File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
-------------------------------|---------|----------|---------|---------|-------------------
-All files                     |     100 |      100 |     100 |     100 | 
- domain/usecases              |     100 |      100 |     100 |     100 |                   
-  delivery-usecase.js         |     100 |      100 |     100 |     100 |                   
- infra/helpers                |     100 |      100 |     100 |     100 |                   
-  mongo-helper.js             |     100 |      100 |     100 |     100 | 
- infra/repositories           |     100 |      100 |     100 |     100 | 
-  delivery-repository.js      |     100 |      100 |     100 |     100 | 
- main/adapters                |     100 |      100 |     100 |     100 | 
-  express-router-adapter.js   |     100 |      100 |     100 |     100 | 
- main/composers               |     100 |      100 |     100 |     100 | 
-  delivery-router-composer.js |     100 |      100 |     100 |     100 | 
- main/middlewares             |     100 |      100 |     100 |     100 | 
-  content-type.js             |     100 |      100 |     100 |     100 |                   
-  cors.js                     |     100 |      100 |     100 |     100 | 
-  json-parser.js              |     100 |      100 |     100 |     100 | 
- main/routes                  |     100 |      100 |     100 |     100 |                   
-  delivery-routes.js          |     100 |      100 |     100 |     100 | 
- presentation/helpers         |     100 |      100 |     100 |     100 | 
-  date-converter.js           |     100 |      100 |     100 |     100 | 
-  http-response.js            |     100 |      100 |     100 |     100 | 
- presentation/routers         |     100 |      100 |     100 |     100 |                   
-  delivery-router.js          |     100 |      100 |     100 |     100 | 
- utils/errors                 |     100 |      100 |     100 |     100 | 
-  index.js                    |     100 |      100 |     100 |     100 | 
-  missing-param-error.js      |     100 |      100 |     100 |     100 | 
-  server-error.js             |     100 |      100 |     100 |     100 | 
-------------------------------|---------|----------|---------|---------|-------------------
+husky > pre-push (node v12.4.0)
+...
 
 Test Suites: 9 passed, 9 total
 Tests:       40 passed, 40 total
-Snapshots:   0 total
-Time:        17.995s
-Enumerating objects: 80, done.
-Counting objects: 100% (80/80), done.
-Delta compression using up to 4 threads
-Compressing objects: 100% (55/55), done.
-Writing objects: 100% (58/58), 6.72 KiB | 132.00 KiB/s, done.
-Total 58 (delta 26), reused 0 (delta 0)
-remote: Resolving deltas: 100% (26/26), completed with 12 local objects.
+...
 ```
+
+## Author
+* **Eduardo Santos** - [elgsantos](https://github.com/elgsantos/)
 
 ## License
 
