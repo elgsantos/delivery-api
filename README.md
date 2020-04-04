@@ -49,6 +49,11 @@ To test and commit files using the repository standard, install semistandard glo
 $ npm install semistandard -g
 ```
 
+If local, create a .env file on project's root directory containing your MONGO_URL:
+```sh
+MONGO_URL = "your_url"
+```
+
 ### Usage
 
 You can start the server with:
