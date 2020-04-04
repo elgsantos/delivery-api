@@ -3,7 +3,7 @@ const { StringToDate } = require('../../presentation/helpers/date-converter');
 const DeliveryRepository = require('./delivery-repository');
 const { MissingParamError } = require('../../utils/errors');
 
-let db;
+let deliveryModel;
 
 const makeSut = () => {
   return new DeliveryRepository();
@@ -19,11 +19,11 @@ const mockDelivery = {
 describe('Deliveries Repository', () => {
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL);
-    db = await MongoHelper.getDb();
+    deliveryModel = await MongoHelper.getCollection('deliveries');
   });
 
   beforeEach(async () => {
-    await db.collection('deliveries').deleteMany();
+    await deliveryModel.deleteMany();
   });
 
   afterAll(async () => {
@@ -39,8 +39,8 @@ describe('Deliveries Repository', () => {
   test('Should return a list of deliveries if any is found on load()', async () => {
     const sut = makeSut();
     let deliveries = [];
-    await db.collection('deliveries').insertOne({ _id: '1', ...mockDelivery });
-    await db.collection('deliveries').insertOne({ _id: '2', ...mockDelivery });
+    await deliveryModel.insertOne({ _id: '1', ...mockDelivery });
+    await deliveryModel.insertOne({ _id: '2', ...mockDelivery });
     deliveries = await sut.load();
     expect(Array.isArray(deliveries)).toBe(true);
     expect(deliveries.length).toBe(2);
@@ -55,7 +55,7 @@ describe('Deliveries Repository', () => {
 
   test('Should return the specified delivery if found on loadById()', async () => {
     const sut = makeSut();
-    await db.collection('deliveries').insertOne({ _id: '1', ...mockDelivery });
+    await deliveryModel.insertOne({ _id: '1', ...mockDelivery });
     const delivery = await sut.loadById('1');
     expect(delivery).toEqual({ _id: '1', ...mockDelivery });
   });

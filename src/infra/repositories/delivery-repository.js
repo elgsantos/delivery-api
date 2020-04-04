@@ -2,8 +2,8 @@ const { MissingParamError } = require('../../utils/errors');
 const MongoHelper = require('../helpers/mongo-helper');
 module.exports = class DeliveryRepository {
   async load () {
-    const db = await MongoHelper.getDb();
-    const deliveries = await db.collection('deliveries').find().toArray();
+    const deliveryModel = await MongoHelper.getCollection('deliveries');
+    const deliveries = deliveryModel.find().toArray();
     return deliveries;
   }
 
@@ -11,8 +11,8 @@ module.exports = class DeliveryRepository {
     if (!id) {
       throw new MissingParamError(['id']);
     }
-    const db = await MongoHelper.getDb();
-    const delivery = await db.collection('deliveries').findOne({ _id: id });
+    const deliveryModel = await MongoHelper.getCollection('deliveries');
+    const delivery = await deliveryModel.findOne({ _id: id });
     return delivery;
   }
 
@@ -32,8 +32,8 @@ module.exports = class DeliveryRepository {
     if (!delivery.destinationAddress) {
       throw new MissingParamError(['destinationAddress']);
     }
-    const db = await MongoHelper.getDb();
-    const result = await db.collection('deliveries').insertOne(delivery);
+    const deliveryModel = await MongoHelper.getCollection('deliveries');
+    const result = await deliveryModel.insertOne(delivery);
     return result.ops[0];
   }
 };

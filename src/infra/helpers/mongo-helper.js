@@ -16,10 +16,10 @@ module.exports = {
     this.db = null;
   },
 
-  async getDb () {
+  async getCollection (name) {
     if (!this.connection.isConnected()) {
       await this.connect(this.url, this.dbName);
     }
-    return this.db;
+    return this.db.collection(name);
   }
 };
