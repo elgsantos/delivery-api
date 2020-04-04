@@ -1,4 +1,6 @@
 # Delivery-API
+[![Build Status](https://travis-ci.com/elgsantos/delivery-api.svg?branch=master)](https://travis-ci.com/elgsantos/delivery-api)
+[![Coverage Status](https://coveralls.io/repos/github/elgsantos/delivery-api/badge.svg?branch=master)](https://coveralls.io/github/elgsantos/delivery-api?branch=master)
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/standard/semistandard)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
