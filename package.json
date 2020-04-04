@@ -4,15 +4,16 @@
   "description": "A delivery API to store and provide delivery data.",
   "main": "src/main/index.js",
   "scripts": {
-    "test": "jest --colors --passWithNoTests --runInBand",
+    "test": "jest --colors --passWithNoTests --noStackTrace --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
-    "test:staged": "npm test -- --findRelatedTests --noStackTrace --silent",
-    "test:ci": "npm test -- --coverage --noStackTrace --silent",
+    "test:staged": "npm test -- --findRelatedTests --silent",
+    "test:ci": "npm test -- --coverage --silent",
     "start": "node ./src/main/index.js",
     "dev": "nodemon ./src/main/index.js"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fast-glob": "^3.2.2",
     "mongodb": "^3.5.5"

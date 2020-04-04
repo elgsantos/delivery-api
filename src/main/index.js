@@ -4,7 +4,7 @@ const env = require('./config/env');
 const makeServer = () => {
   MongoHelper.connect(env.mongoUrl)
     .then(() => {
-      const app = require('./app');
+      const app = require('./config/app');
 
       return app.listen(env.port, function () {
         console.log(`Server running on port ${this.address().port}`);
