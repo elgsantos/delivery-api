@@ -5,12 +5,11 @@
   "main": "src/main/index.js",
   "scripts": {
     "test": "jest --colors --passWithNoTests --noStackTrace --runInBand",
-    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js --silent",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests --silent",
     "test:ci": "npm test -- --coverage --silent",
-    "start": "node ./src/main/index.js",
-    "dev": "nodemon ./src/main/index.js"
+    "start": "node ./src/main/index.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
