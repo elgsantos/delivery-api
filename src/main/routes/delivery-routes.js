@@ -1,10 +1,6 @@
-const DeliveryRouter = require('../../presentation/routers/delivery-router');
-const DeliveryUseCase = require('../../domain/usecases/delivery-usecase');
-const DeliveryRepository = require('../../infra/repositories/delivery-repository');
+const ExpressRouterAdapter = require('../adapters/express-router-adapter');
+const deliveryRouter = require('../composers/delivery-router-composer');
 
 module.exports = router => {
-  const deliveryRepository = new DeliveryRepository();
-  const deliveryUseCase = new DeliveryUseCase(deliveryRepository);
-  const deliveryRouter = new DeliveryRouter(deliveryUseCase);
-  router.post('/deliveries', deliveryRouter);
+  router.post('/deliveries', ExpressRouterAdapter.adapt(deliveryRouter));
 };
