@@ -6,11 +6,14 @@
 
 ### :truck: A delivery API to store and provide delivery data.
 
+Built using TDD, clean architecture, Factory pattern and dependency injection.
+
 ## Table of Contents
 - [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
   * [Usage](#usage)
+  * [Documentation](#documentation)
 - [Built With](#built-with)
 - [Tools used](#tools-used)
 - [Contributing](#contributing)
@@ -74,6 +77,10 @@ To run and watch integration tests, use:
 $ npm run test:integration
 ```
 
+### Documentation
+
+Read the [documentation](https://github.com/elgsantos/delivery-api/blob/master/DOCUMENTATION.md).
+
 ## Built With
 
 - [Node](https://nodejs.org/en/)
@@ -93,12 +100,13 @@ The following tools were used in the development of the API:
 
 - Code editor: [vscode](https://marketplace.visualstudio.com/vscode)
 - Semistandard Extension: [vscode-semistandard](https://marketplace.visualstudio.com/items?itemName=flet.vscode-semistandard)
+- REST Client: [Insomnia](https://insomnia.rest/)
 
 ## Contributing
 
 Feel free to develop and contribute, and send your pull requests. :blush:
 
-* The semistandard should be used, to ensure that the code will follow the same pattern.
+* The [semistandard](https://github.com/standard/semistandard) should be used, to ensure that the code will follow the same standard.
 * Before each commit, husky runs tasks to standardize the code correctly.
 * Tests are performed on the staged files, and if the tests are not ok, the commit will be canceled.
 
